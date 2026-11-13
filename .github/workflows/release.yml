@@ -27,6 +27,6 @@ jobs:
           cd flatpak-src
           flatpak-builder --user --force-clean --repo=repo --install-deps-from=flathub build-dir com.fanpilot.app.json
           flatpak build-bundle repo ../FanPilot.flatpak com.fanpilot.app master
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           files: FanPilot.flatpak
