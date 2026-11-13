@@ -33,3 +33,8 @@ lto = true
 opt-level = 3
 panic = "abort"
 strip = true
+
+[lints.clippy]
+# Autorise collapsible_if : ce lint est trop strict pour le code Tauri généré
+collapsible_if = "allow"
+collapsible_else_if = "allow"
