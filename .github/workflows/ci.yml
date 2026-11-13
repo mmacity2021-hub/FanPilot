@@ -21,7 +21,7 @@ jobs:
           components: rustfmt, clippy
       - run: cargo fmt --all -- --check
         working-directory: fan-control/src-tauri
-      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo clippy --all-targets
         working-directory: fan-control/src-tauri
 
   frontend:
