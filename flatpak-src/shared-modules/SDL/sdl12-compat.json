@@ -1,0 +1,22 @@
+{
+    "name": "sdl12-compat",
+    "buildsystem": "cmake-ninja",
+    "builddir": true,
+    "cleanup": [
+        "/bin/sdl-config",
+        "/include",
+        "/lib/pkgconfig",
+        "/share/aclocal",
+        "*.a"
+    ],
+    "sources": [
+        {
+            "type": "archive",
+            "url": "https://github.com/libsdl-org/sdl12-compat/releases/download/release-1.2.76/sdl12-compat-1.2.76.tar.gz",
+            "sha256": "a68477009c24bc6e876326b1e8dd0bedec2b0c37acbddbddf90acba48fba4b38"
+        }
+    ],
+    "modules": [
+        "../glu/glu-9.json"
+    ]
+}

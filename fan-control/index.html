@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FanPilot — Contrôle des ventilateurs</title>
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <h1>🎛️ FanPilot</h1>
+      <p class="subtitle">MacBookPro11,2</p>
+      <nav>
+        <button class="nav-btn active" data-tab="monitor">📊 Monitoring</button>
+        <button class="nav-btn" data-tab="curves">📈 Courbes & Profils</button>
+        <button class="nav-btn" data-tab="manual">🎮 Contrôle manuel</button>
+        <button class="nav-btn" data-tab="settings">🔧 Paramètres</button>
+      </nav>
+      <div class="status">
+        <span id="daemon-status" class="dot unknown"></span>
+        <span id="daemon-text">mbpfan : vérification…</span>
+      </div>
+      <div class="log-info">📝 Logs : ~/Documents/FanPilot/logs/</div>
+    </aside>
+
+    <main class="content">
+      <section id="tab-monitor" class="tab active">
+        <h2>Monitoring en temps réel</h2>
+
+        <div id="polkit-banner" class="polkit-banner hidden">
+          <div>
+            <strong>⚠️ Autorisation système requise (une seule fois)</strong><br>
+            <span style="font-size:13px;">FanPilot a besoin d'une règle polkit pour fonctionner sans mot de passe.</span>
+          </div>
+          <button id="btn-install-polkit" class="btn">🔐 Installer les permissions</button>
+        </div>
+
+        <div class="prereq-box">
+          <div class="prereq-header">
+            <h3>🔧 Prérequis système</h3>
+            <span id="mbpfan-status" class="badge unknown">Vérification…</span>
+          </div>
+          <p>L'application <strong>mbpfan</strong> doit être installée sur votre système.</p>
+          <div class="prereq-cmd">
+            <code id="install-cmd">sudo apt install mbpfan</code>
+            <button id="btn-copy-cmd" class="btn btn-small">📋 Copier</button>
+          </div>
+        </div>
+
+        <div class="fans-grid">
+          <div class="fan-card">
+            <h3>🌬️ Ventilateur gauche</h3>
+            <div class="rpm" id="fan1-rpm">— RPM</div>
+            <div class="bar"><div class="fill" id="fan1-bar"></div></div>
+            <div class="range"><span id="fan1-min">—</span> → <span id="fan1-max">—</span></div>
+          </div>
+          <div class="fan-card">
+            <h3>🌬️ Ventilateur droit</h3>
+            <div class="rpm" id="fan2-rpm">— RPM</div>
+            <div class="bar"><div class="fill" id="fan2-bar"></div></div>
+            <div class="range"><span id="fan2-min">—</span> → <span id="fan2-max">—</span></div>
+          </div>
+        </div>
+
+        <h2>Températures</h2>
+        <div class="temps-grid">
+          <div class="temp-card">
+            <label>CPU Package (TCXC)</label>
+            <div class="temp-value" id="temp-tcxc">— °C</div>
+          </div>
+          <div class="temp-card">
+            <label>CPU Core 0 (TC0P)</label>
+            <div class="temp-value" id="temp-tc0p">— °C</div>
+          </div>
+          <div class="temp-card">
+            <label>CPU Effective (TC0E)</label>
+            <div class="temp-value" id="temp-tc0e">— °C</div>
+          </div>
+          <div class="temp-card">
+            <label>Batterie (TB0T)</label>
+            <div class="temp-value" id="temp-tb0t">— °C</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-curves" class="tab">
+        <h2>Courbes & Profils</h2>
+
+        <h3 style="text-align:center; margin: 20px 0 8px;">Profils prédéfinis</h3>
+        <p class="hint" style="margin-bottom: 16px;">
+          Cliquez sur un profil pour l'appliquer <strong>immédiatement</strong> (redémarrage automatique de mbpfan).
+        </p>
+
+        <div class="profiles-grid">
+          <div class="profile-card" data-profile="silent" data-low="50" data-high="58" data-max="68">
+            <span class="profile-check">✓</span>
+            <h3>🤫 Silencieux</h3>
+            <p class="profile-values">low 50 / high 58 / max 68</p>
+          </div>
+          <div class="profile-card" data-profile="balanced" data-low="45" data-high="52" data-max="60">
+            <span class="profile-check">✓</span>
+            <h3>⚖️ Équilibré</h3>
+            <p class="profile-values">low 45 / high 52 / max 60</p>
+          </div>
+          <div class="profile-card" data-profile="performance" data-low="40" data-high="45" data-max="52">
+            <span class="profile-check">✓</span>
+            <h3>🚀 Performance</h3>
+            <p class="profile-values">low 40 / high 45 / max 52</p>
+          </div>
+        </div>
+
+        <h3 style="text-align:center; margin: 32px 0 12px;">Seuils personnalisés</h3>
+        <div class="curve-config">
+          <div class="slider-row">
+            <label>low_temp (ventilos au minimum)</label>
+            <input type="number" id="cfg-low-temp" min="30" max="80" step="1" />
+            <span>°C</span>
+          </div>
+          <div class="slider-row">
+            <label>high_temp (la vitesse monte)</label>
+            <input type="number" id="cfg-high-temp" min="30" max="90" step="1" />
+            <span>°C</span>
+          </div>
+          <div class="slider-row">
+            <label>max_temp (ventilos à fond)</label>
+            <input type="number" id="cfg-max-temp" min="40" max="100" step="1" />
+            <span>°C</span>
+          </div>
+          <div class="actions" style="justify-content:center; margin-top: 20px;">
+            <button id="btn-save-config" class="btn">💾 Appliquer et redémarrer mbpfan</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-manual" class="tab">
+        <h2>🎮 Contrôle manuel</h2>
+        <p class="hint">⚠️ Le contrôle manuel arrête mbpfan et force la vitesse. Quitter cet onglet rend le contrôle au système automatiquement.</p>
+
+        <div class="curve-config">
+          <div class="slider-row">
+            <label>🌬️ Ventilateur gauche (RPM)</label>
+            <input type="number" id="manual-fan1" value="2000" step="100" min="2000" max="6200" />
+            <button class="btn" onclick="window.setManual(1)">Appliquer</button>
+          </div>
+          <div class="slider-row">
+            <label>🌬️ Ventilateur droit (RPM)</label>
+            <input type="number" id="manual-fan2" value="2000" step="100" min="2000" max="6200" />
+            <button class="btn" onclick="window.setManual(2)">Appliquer</button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="btn-restore-auto" class="btn btn-secondary">↩️ Rendre le Contrôle à FanPilot</button>
+        </div>
+      </section>
+
+      <section id="tab-settings" class="tab">
+        <h2>Paramètres bruts</h2>
+        <p class="hint">Contenu de /etc/mbpfan.conf</p>
+        <pre id="config-raw" class="config-view">Chargement…</pre>
+        <button id="btn-reload-config" class="btn">🔄 Recharger</button>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

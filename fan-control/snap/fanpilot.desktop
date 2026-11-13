@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=FanPilot
+Comment=Contrôle des ventilateurs MacBook et de mbpfan
+Exec=fanpilot
+Icon=${SNAP}/usr/share/icons/hicolor/128x128/apps/fanpilot.png
+Terminal=false
+Categories=System;Settings;Utility;
+Keywords=fan;mbpfan;macbook;temperature;
+StartupWMClass=fan-control

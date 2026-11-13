@@ -1,0 +1,14 @@
+# Fallback on Flathub admins for unowned shared modules
+*                  @flathub/reviewers
+
+update-checker.sh  @flathub/reviewers
+.github/ @flathub/reviewers
+
+/appstream/        @hfiguiere
+/libcanberra/      @hadess
+/libportal/        @ostfriese4
+/physfs/           @ranisalt
+/linux-audio/      @hfiguiere
+/libsoup/          @hfiguiere
+/luajit/           @ranisalt
+/SDL2/             @tothxa @user1-github

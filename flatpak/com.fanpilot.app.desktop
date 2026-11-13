@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=FanPilot
+Comment=Contrôle des ventilateurs pour Mac sous Linux
+Exec=fan-control
+Icon=com.fanpilot.app
+Terminal=false
+Type=Application
+Categories=Utility;System;
+Keywords=fan;temperature;smc;

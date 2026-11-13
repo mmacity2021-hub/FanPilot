@@ -1,0 +1,75 @@
+{
+  "level": "pass",
+  "section": "tools",
+  "message": "jq présent"
+}
+{
+  "level": "pass",
+  "section": "tools",
+  "message": "flatpak présent"
+}
+{
+  "level": "pass",
+  "section": "tools",
+  "message": "flatpak-builder présent"
+}
+{
+  "level": "pass",
+  "section": "tools",
+  "message": "appstreamcli présent"
+}
+{
+  "level": "pass",
+  "section": "tools",
+  "message": "desktop-file-validate présent"
+}
+{
+  "level": "skip",
+  "section": "tools",
+  "message": "yq absent"
+}
+{
+  "level": "pass",
+  "section": "cible",
+  "message": "mode détecté: source-dir"
+}
+{
+  "level": "skip",
+  "section": "cible",
+  "message": "absent: files"
+}
+{
+  "level": "skip",
+  "section": "cible",
+  "message": "absent: repo"
+}
+{
+  "level": "skip",
+  "section": "cible",
+  "message": "absent: build"
+}
+{
+  "level": "skip",
+  "section": "cible",
+  "message": "absent: exports"
+}
+{
+  "level": "skip",
+  "section": "cible",
+  "message": "absent: metadata"
+}
+{
+  "level": "pass",
+  "section": "cible",
+  "message": "présent: .flatpak-builder"
+}
+{
+  "level": "skip",
+  "section": "cible",
+  "message": "absent: var"
+}
+{
+  "level": "pass",
+  "section": "manifest",
+  "message": "trouvé: /home/mo/FanPilot/flatpak-build/com.fanpilot.app.json"
+}

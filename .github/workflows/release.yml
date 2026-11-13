@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  flatpak:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Flatpak deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak flatpak-builder
+          flatpak remote-add --user --if-not-exists flathub \
+            https://flathub.org/repo/flathub.flatpakrepo
+          flatpak install --user -y flathub \
+            org.gnome.Platform//48 org.gnome.Sdk//48
+      - name: Build
+        run: |
+          cd flatpak-src
+          flatpak-builder --user --force-clean --repo=repo build-dir com.fanpilot.app.json
+          flatpak build-bundle repo ../FanPilot.flatpak com.fanpilot.app master
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: FanPilot.flatpak

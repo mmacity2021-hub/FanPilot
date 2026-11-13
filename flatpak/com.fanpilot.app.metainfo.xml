@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.fanpilot.app</id>
+  <name>FanPilot</name>
+  <summary>Contrôle des ventilateurs pour Mac sous Linux</summary>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>
+      FanPilot lit les capteurs SMC et règle la vitesse des ventilateurs
+      sur les Mac équipés de contrôleurs compatibles, sous Linux.
+    </p>
+  </description>
+  <launchable type="desktop-id">com.fanpilot.app.desktop</launchable>
+  <url type="homepage">https://github.com/mmacity2021-hub/FanPilot</url>
+  <url type="bugtracker">https://github.com/mmacity2021-hub/FanPilot/issues</url>
+  <developer_name>FanPilot contributors</developer_name>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" date="2025-11-13">
+      <description><p>Première version.</p></description>
+    </release>
+  </releases>
+</component>

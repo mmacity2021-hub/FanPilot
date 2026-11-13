@@ -1,0 +1,14 @@
+# Flatpak
+flatpak-src/build-dir/
+flatpak-src/.flatpak-builder/
+*.flatpak
+
+# Node/Tauri
+fan-control/node_modules/
+fan-control/src-tauri/target/
+fan-control/dist/
+fan-control/.vite/
+
+# OS
+.DS_Store
+*~

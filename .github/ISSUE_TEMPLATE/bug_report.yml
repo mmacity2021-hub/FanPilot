@@ -1,0 +1,29 @@
+name: Bug report
+description: Signaler un dysfonctionnement
+labels: ["bug"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version FanPilot
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: distro
+    attributes:
+      label: Distribution Linux
+      placeholder: "Ubuntu 24.04"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Étapes de reproduction
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      render: shell

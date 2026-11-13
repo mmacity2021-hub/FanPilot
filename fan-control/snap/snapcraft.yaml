@@ -1,0 +1,47 @@
+name: fanpilot
+title: FanPilot
+base: core26
+version: "0.1.0"
+summary: Contrôle des ventilateurs MacBook sous Ubuntu
+description: |
+  FanPilot affiche les températures et les ventilateurs d'un MacBook
+  sous Linux (Apple SMC) et règle mbpfan. Le paquet est en confinement
+  classic : l'application doit pouvoir lire le sysfs, écrire
+  /etc/mbpfan.conf et redémarrer le service via pkexec.
+grade: stable
+confinement: classic
+architectures:
+  - build-on: amd64
+    build-for: amd64
+
+apps:
+  fanpilot:
+    command: usr/bin/fan-control
+    desktop: usr/share/applications/fanpilot.desktop
+
+parts:
+  fanpilot:
+    plugin: nil
+    source: .
+    build-packages:
+      - build-essential
+      - curl
+      - file
+      - libayatana-appindicator3-dev
+      - librsvg2-dev
+      - libssl-dev
+      - libwebkit2gtk-4.1-dev
+      - patchelf
+      - pkg-config
+    override-build: |
+      set -eu
+      # Compilation sur l'hôte Ubuntu 26.04 (snapcraft --destructive-mode).
+      # cargo est celui de l'utilisateur ; node est celui du système.
+      export PATH="${HOME}/.cargo/bin:${PATH}"
+      npm ci
+      npm run tauri build -- --no-bundle
+      install -D -m 755 src-tauri/target/release/fan-control "$CRAFT_PART_INSTALL/usr/bin/fan-control.bin"
+      install -D -m 755 snap/fan-control.wrapper "$CRAFT_PART_INSTALL/usr/bin/fan-control"
+      install -D -m 644 snap/fanpilot.desktop "$CRAFT_PART_INSTALL/usr/share/applications/fanpilot.desktop"
+      install -D -m 644 src-tauri/icons/128x128.png "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps/fanpilot.png"
+      install -D -m 644 src-tauri/icons/128x128.png "$CRAFT_PART_INSTALL/meta/gui/icon.png"

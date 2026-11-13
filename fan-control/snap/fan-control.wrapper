@@ -1,0 +1,28 @@
+#!/bin/sh
+# Lance le binaire en confinement classic. Les bibliothèques GTK/WebKit
+# viennent de l'hôte Ubuntu 26.04, pour garder thèmes et modules GTK.
+set -eu
+
+here=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
+app="$here/fan-control.bin"
+
+missing=""
+check() {
+  lib=$1
+  pkg=$2
+  if ! ldconfig -p 2>/dev/null | grep -q "$lib"; then
+    missing="$missing $pkg"
+  fi
+}
+
+check libwebkit2gtk-4.1.so.0 libwebkit2gtk-4.1-0
+check libgtk-3.so.0 libgtk-3-0t64
+
+if [ -n "$missing" ]; then
+  echo "FanPilot : bibliothèques absentes de ce système Ubuntu." >&2
+  echo "Installez-les puis relancez l'application :" >&2
+  echo "  sudo apt install$missing" >&2
+  exit 1
+fi
+
+exec "$app" "$@"

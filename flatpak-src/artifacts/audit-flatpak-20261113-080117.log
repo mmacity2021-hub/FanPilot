@@ -1,0 +1,22 @@
+
+== Outils ==
+  ✔ jq présent
+  ✔ flatpak présent
+  ✔ flatpak-builder présent
+  ✔ appstreamcli présent
+  ✔ desktop-file-validate présent
+  ↷ yq absent
+
+== Cible & mode ==
+▸ Cible: /home/mo/FanPilot/flatpak-build
+  ✔ mode détecté: source-dir
+  ↷ absent: files
+  ↷ absent: repo
+  ↷ absent: build
+  ↷ absent: exports
+  ↷ absent: metadata
+  ✔ présent: .flatpak-builder
+  ↷ absent: var
+
+== Manifest ==
+  ✔ trouvé: /home/mo/FanPilot/flatpak-build/com.fanpilot.app.json

@@ -1,0 +1,23 @@
+]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\
+== Outils ==
+]133;C\]666;vte.shell.preexec!\  ✔ jq présent
+  ✔ flatpak présent
+  ✔ flatpak-builder présent
+  ✔ appstreamcli présent
+  ✔ desktop-file-validate présent
+  ↷ yq absent
+]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\
+== Cible & mode ==
+]133;C\]666;vte.shell.preexec!\▸ Cible: /home/mo/FanPilot/flatpak-build
+]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\  ✔ mode détecté: source-dir
+]133;C\]666;vte.shell.preexec!\  ↷ absent: files
+  ↷ absent: repo
+  ↷ absent: build
+  ↷ absent: exports
+  ↷ absent: metadata
+  ✔ présent: .flatpak-builder
+  ↷ absent: var
+]133;C\]666;vte.shell.preexec!\
+== Manifest ==
+]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\  ✔ trouvé: /home/mo/FanPilot/flatpak-build/com.fanpilot.app.json
+]133;C\]666;vte.shell.preexec!\]133;C\]666;vte.shell.preexec!\
