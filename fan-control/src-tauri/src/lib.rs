@@ -24,12 +24,11 @@ fn profiles_json_path() -> Result<std::path::PathBuf, String> {
 }
 
 fn load_profiles_json() -> serde_json::Value {
-    if let Ok(path) = profiles_json_path() {
-        if let Ok(content) = fs::read_to_string(&path) {
-            if let Ok(json) = serde_json::from_str::<serde_json::Value>(&content) {
-                return json;
-            }
-        }
+    if let Ok(path) = profiles_json_path()
+        && let Ok(content) = fs::read_to_string(&path)
+        && let Ok(json) = serde_json::from_str::<serde_json::Value>(&content)
+    {
+        return json;
     }
     // Valeurs par défaut
     serde_json::json!({
@@ -489,10 +488,10 @@ pub fn run() {
                             let _ = save_mbpfan_config(low, high, max);
                             let _ = restart_mbpfan();
 
-                            if let Some(state) = app.try_state::<TrayState>() {
-                                if let Ok(items) = state.items.lock() {
-                                    update_menu_labels(&items, id);
-                                }
+                            if let Some(state) = app.try_state::<TrayState>()
+                                && let Ok(items) = state.items.lock()
+                            {
+                                update_menu_labels(&items, id);
                             }
                             let _ = app.emit("profile-changed", id);
                         }
