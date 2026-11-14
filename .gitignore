@@ -12,3 +12,10 @@ fan-control/.vite/
 # OS
 .DS_Store
 *~
+
+# Fichiers de debug locaux
+ci-logs.txt
+release-logs.txt
+debug.sh
+fix-*.sh
+preflight.sh
