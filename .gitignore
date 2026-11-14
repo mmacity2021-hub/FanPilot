@@ -19,3 +19,6 @@ release-logs.txt
 debug.sh
 fix-*.sh
 preflight.sh
+
+# Fichier de contexte IA (Local uniquement)
+AI_CONTEXT.md
